@@ -1,0 +1,75 @@
+{
+  "common": {
+    "toggleTheme": "Toggle theme",
+    "search": "Search",
+    "changeLanguage": "Select language",
+    "portal": "Main portal",
+    "allRights": "All rights reserved."
+  },
+  "nav": {
+    "home": "Home",
+    "materials": "Database",
+    "submit": "Submit Material",
+    "stats": "Statistics",
+    "login": "Sign In"
+  },
+  "home": {
+    "title": "Central Asia Resilient Landscapes Program",
+    "subtitle": "Knowledge repository for combating land degradation, forest landscape restoration, and climate resilience in Central Asia.",
+    "searchPlaceholder": "Search by title, topic, author, or keywords...",
+    "searchButton": "Search",
+    "quickFilters": "Popular topics",
+    "recentMaterials": "Recent Materials",
+    "statsTitle": "Live Repository Statistics",
+    "mapTitle": "Regional Ecological Coverage & Map",
+    "mapSubtitle": "Landscape restoration indicators across 5 Central Asian countries",
+    "stats": {
+      "totalMaterials": "Total Scientific & Technical Materials",
+      "countriesCovered": "Central Asian Countries & CA+",
+      "lastUpdated": "Last Verified Record"
+    }
+  },
+  "materials": {
+    "facets": {
+      "country": "Country",
+      "topic": "Thematic Topic",
+      "contentType": "Content Type",
+      "language": "Document Language",
+      "countryOptions": {
+        "uz": "Uzbekistan",
+        "kz": "Kazakhstan",
+        "kg": "Kyrgyzstan",
+        "tj": "Tajikistan",
+        "tm": "Turkmenistan",
+        "regional": "Regional (CA+)"
+      },
+      "topicOptions": {
+        "forestry": "Forestry & Afforestation",
+        "landDegradation": "Land Degradation",
+        "climate": "Climate Change",
+        "water": "Water & Glaciers",
+        "pastures": "Pasture Management",
+        "biodiversity": "Biodiversity"
+      }
+    },
+    "detail": {
+      "details": "Metadata Passport",
+      "contentType": "Content Type",
+      "countries": "Countries",
+      "topics": "Topics",
+      "fileType": "File Type",
+      "downloadFile": "Download Document",
+      "openExternal": "Open in New Tab"
+    }
+  },
+  "submit": {
+    "title": "Submit New Scientific / Technical Material",
+    "titleField": "Material Title",
+    "summaryField": "Executive Summary & Abstract",
+    "fileField": "Document File",
+    "fileDropHint": "Drag and drop file here or click to select (PDF, DOCX, XLSX — up to 25MB)",
+    "submitButton": "Submit Material",
+    "successTitle": "Material Submitted Successfully!",
+    "successBody": "Your material has been queued for moderation. It will be published upon approval."
+  }
+}

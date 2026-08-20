@@ -1,0 +1,75 @@
+{
+  "common": {
+    "toggleTheme": "Temany çalyşmak",
+    "search": "Gözleg",
+    "changeLanguage": "Dili saýlaň",
+    "portal": "Esasy portal",
+    "allRights": "Ähli hukuklar goralan."
+  },
+  "nav": {
+    "home": "Baş sahypa",
+    "materials": "Maglumatlar bazasy",
+    "submit": "Material ugratmak",
+    "stats": "Statistika",
+    "login": "Ulgama girmek"
+  },
+  "home": {
+    "title": "Merkezi Aziýanyň durnukly landşaftlar maksatnamasy",
+    "subtitle": "Ýerleriň zaýalanmagyna garşy göreş, tokaýlary dikeltmek we ekologik durnuklylyk boýunça ylmy makalalaryň we maglumatlar toplumynyň arhiwi.",
+    "searchPlaceholder": "Ady, temasy, awtory ýa-da açar sözler boýunça gözläň...",
+    "searchButton": "Gözle",
+    "quickFilters": "Meşhur temalar",
+    "recentMaterials": "Soňky materiallar",
+    "statsTitle": "Dinamiki statistika",
+    "mapTitle": "Sebitleýin ekologik gurşaw we karta",
+    "mapSubtitle": "Merkezi Aziýanyň 5 ýurdunda landşaftlary dikeltmek görkezijileri",
+    "stats": {
+      "totalMaterials": "Jemi ylmy we tehniki materiallar",
+      "countriesCovered": "Merkezi Aziýa ýurtlary we CA+",
+      "lastUpdated": "Iň soňky tassyklanan ýazgy"
+    }
+  },
+  "materials": {
+    "facets": {
+      "country": "Ýurt",
+      "topic": "Tematiki ugur",
+      "contentType": "Mazmun görnüşi",
+      "language": "Resminama dili",
+      "countryOptions": {
+        "uz": "Özbegistan",
+        "kz": "Gazagystan",
+        "kg": "Gyrgyzystan",
+        "tj": "Täjigistan",
+        "tm": "Türkmenistan",
+        "regional": "Sebitleýin (CA+)"
+      },
+      "topicOptions": {
+        "forestry": "Tokaý hojalygy",
+        "landDegradation": "Ýer zaýalanmagy",
+        "climate": "Howanyň üýtgemegi",
+        "water": "Suw serişdeleri",
+        "pastures": "Öri meýdanlary",
+        "biodiversity": "Biologik köpdürlülik"
+      }
+    },
+    "detail": {
+      "details": "Metamaglamatlar pasporty",
+      "contentType": "Mazmun görnüşi",
+      "countries": "Ýurtlar",
+      "topics": "Temalar",
+      "fileType": "Faýl görnüşi",
+      "downloadFile": "Resminamany ýükläp al",
+      "openExternal": "Täze penjirede aç"
+    }
+  },
+  "submit": {
+    "title": "Täze ylmy / tehniki material ýerleşdirmek",
+    "titleField": "Materialyň ady",
+    "summaryField": "Gysgaça mazmun we netije",
+    "fileField": "Resminama faýly",
+    "fileDropHint": "Faýly şu ýere süýräp taşlaň ýa-da saýlamak üçin basyň (PDF, DOCX, XLSX — 25MB çenli)",
+    "submitButton": "Materialy ugrat",
+    "successTitle": "Material üstünlikli ugradyldy!",
+    "successBody": "Siziň materialyňyz barlag nobatyna goşuldy. Tassyklandan soň maglumatlar bazasynda çap ediler."
+  }
+}

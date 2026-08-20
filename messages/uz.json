@@ -1,0 +1,75 @@
+{
+  "common": {
+    "toggleTheme": "Mavzuni almashtirish",
+    "search": "Qidirish",
+    "changeLanguage": "Tilni tanlash",
+    "portal": "Asosiy portal",
+    "allRights": "Barcha huquqlar himoyalangan."
+  },
+  "nav": {
+    "home": "Bosh sahifa",
+    "materials": "Ma'lumotlar bazasi",
+    "submit": "Material yuklash",
+    "stats": "Statistika",
+    "login": "Tizimga kirish"
+  },
+  "home": {
+    "title": "Markaziy Osiyo Barqaror Landshaftlar Dasturi",
+    "subtitle": "Yer degradatsiyasiga qarshi kurashish, o'rmonlarni tiklash va ekologik barqarorlik bo'yicha ilmiy maqolalar, geofazoviy ma'lumotlar to'plami hamda hisobotlar arxivi.",
+    "searchPlaceholder": "Material nomi, mavzu, muallif yoki kalit so'zlarni qidiring...",
+    "searchButton": "Qidirish",
+    "quickFilters": "Ommabop mavzular",
+    "recentMaterials": "So'nggi Materiallar",
+    "statsTitle": "Dinamik Statistika",
+    "mapTitle": "Mintaqaviy Ekologik Qamrov va Xarita",
+    "mapSubtitle": "5 ta Markaziy Osiyo davlati bo'yicha landshaftlarni qayta tiklash ko'rsatkichlari",
+    "stats": {
+      "totalMaterials": "Jami Ilmiy & Texnik Materiallar",
+      "countriesCovered": "Markaziy Osiyo Davlatlari & CA+",
+      "lastUpdated": "So'nggi Tasdiqlangan Yozuv"
+    }
+  },
+  "materials": {
+    "facets": {
+      "country": "Mamlakat",
+      "topic": "Sohaviy Mavzu",
+      "contentType": "Kontent turi",
+      "language": "Hujjat Tili",
+      "countryOptions": {
+        "uz": "O'zbekiston",
+        "kz": "Qozog'iston",
+        "kg": "Qirg'iziston",
+        "tj": "Tojikiston",
+        "tm": "Turkmaniston",
+        "regional": "Mintaqaviy (CA+)"
+      },
+      "topicOptions": {
+        "forestry": "O'rmonlashtirish",
+        "landDegradation": "Yer degradatsiyasi",
+        "climate": "Iqlim o'zgarishi",
+        "water": "Suv resurslari",
+        "pastures": "Yaylovlar",
+        "biodiversity": "Biologik xilma-xillik"
+      }
+    },
+    "detail": {
+      "details": "Metama'lumotlar pasporti",
+      "contentType": "Kontent turi",
+      "countries": "Mamlakatlar",
+      "topics": "Mavzular",
+      "fileType": "Fayl turi",
+      "downloadFile": "Hujjatni yuklab olish",
+      "openExternal": "Yangi oynada ochish"
+    }
+  },
+  "submit": {
+    "title": "Yangi Ilmiy / Texnik Material Joylashtirish",
+    "titleField": "Material sarlavhasi",
+    "summaryField": "Qisqa tavsif va xulosa",
+    "fileField": "Hujjat fayli",
+    "fileDropHint": "Faylni shu yerga tashlang yoki tanlash uchun bosing (PDF, DOCX, XLSX — 25MB gacha)",
+    "submitButton": "Materialni yuborish",
+    "successTitle": "Material muvaffaqiyatli yuborildi!",
+    "successBody": "Siz taqdim etgan material moderatsiya navbatiga kiritildi. Tasdiqlangach bazada paydo bo'ladi."
+  }
+}

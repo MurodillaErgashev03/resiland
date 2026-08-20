@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans), "Nunito Sans", system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-heading), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* RESILAND Deep Emerald / Forest Green (Primary) */
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Regional Water & Climate Sky Blue */
+    --secondary: 199 89% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96.5%;
+    --muted-foreground: 215 20% 42%;
+
+    /* Arid Land & Sun Golden Amber */
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 90%;
+    --input: 214 32% 90%;
+    --ring: 160 84% 39%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Deep Emerald / Vivid Green Glow */
+    --primary: 158 64% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 199 89% 58%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 217 33% 14%;
+    --muted-foreground: 215 20% 68%;
+
+    --accent: 38 92% 58%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 158 64% 52%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: var(--font-heading), "Roboto Slab", Georgia, serif;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* WCAG 2.4.7 — Visible Focus Ring */
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* WCAG 2.3.1 — Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ── Background grid / topographic patterns ─────────────────── */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+}
+
+/* Topographic contour line overlay */
+.bg-topo {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23059669' stroke-width='0.5' stroke-opacity='0.12'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%23059669' stroke-width='0.5' stroke-opacity='0.10'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%230d9488' stroke-width='0.5' stroke-opacity='0.09'/%3E%3Ccircle cx='100' cy='100' r='30' fill='none' stroke='%230d9488' stroke-width='0.5' stroke-opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── Section surface variants ────────────────────────────────── */
+
+/* Soft mint wash — stats, map */
+.section-mint {
+  background: linear-gradient(160deg, #ecfdf5 0%, #f0fdf9 40%, #f0f9ff 100%);
+}
+
+/* Warm cream — publications */
+.section-warm {
+  background: linear-gradient(160deg, #fffbeb 0%, #fefce8 40%, #f0fdf4 100%);
+}
+
+/* Sky-teal — programs */
+.section-sky {
+  background: linear-gradient(160deg, #f0fdf4 0%, #ecfeff 50%, #eff6ff 100%);
+}
+
+/* ── Gradient text ────────────────────────────────────────────── */
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #2dd4bf 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-teal {
+  background: linear-gradient(135deg, #0d9488 0%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass header ─────────────────────────────────────────────── */
+.glass-header {
+  background-color: rgba(13, 22, 39, 0.82) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── Card accent border top ───────────────────────────────────── */
+.card-accent-emerald { border-top: 3px solid #059669; }
+.card-accent-teal    { border-top: 3px solid #0d9488; }
+.card-accent-sky     { border-top: 3px solid #0ea5e9; }
+.card-accent-amber   { border-top: 3px solid #f59e0b; }
+.card-accent-violet  { border-top: 3px solid #7c3aed; }
+
+/* ── Stat counter glow ────────────────────────────────────────── */
+.stat-glow-emerald {
+  box-shadow: 0 0 0 1px rgba(5, 150, 105, 0.12),
+              0 4px 24px rgba(5, 150, 105, 0.10);
+}
+
+/* ── Section label pill ───────────────────────────────────────── */
+.label-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border-width: 1px;
+  border-style: solid;
+}
