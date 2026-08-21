@@ -177,9 +177,9 @@ export function ContributorForm() {
       )}
 
       {/* 1. Sarlavhalar (3 tilda) */}
-      <Card>
-        <CardHeader className="p-6 pb-4 border-b border-border">
-          <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wider">
+      <Card className="rounded-3xl border border-slate-200/90 border-l-[6px] border-l-emerald-600 bg-white shadow-xl shadow-slate-900/5 overflow-hidden">
+        <CardHeader className="p-6 sm:p-8 pb-4 border-b border-slate-100">
+          <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider">
             <Globe2 className="h-4 w-4" />
             <span>1. Ko&apos;p tilli Sarlavhalar (ToR 6.4-band talabi)</span>
           </div>
@@ -237,9 +237,9 @@ export function ContributorForm() {
       </Card>
 
       {/* 2. Qisqa tavsif / Xulosa (3 tilda) */}
-      <Card>
-        <CardHeader className="p-6 pb-4 border-b border-border">
-          <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wider">
+      <Card className="rounded-3xl border border-slate-200/90 border-l-[6px] border-l-emerald-600 bg-white shadow-xl shadow-slate-900/5 overflow-hidden">
+        <CardHeader className="p-6 sm:p-8 pb-4 border-b border-slate-100">
+          <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider">
             <FileText className="h-4 w-4" />
             <span>2. Ko&apos;p tilli Qisqa Tavsif va Xulosa</span>
           </div>
@@ -300,9 +300,9 @@ export function ContributorForm() {
       </Card>
 
       {/* 3. Tasniflash: Kontent turi, Mamlakat, Soha */}
-      <Card>
-        <CardHeader className="p-6 pb-4 border-b border-border">
-          <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wider">
+      <Card className="rounded-3xl border border-slate-200/90 border-l-[6px] border-l-emerald-600 bg-white shadow-xl shadow-slate-900/5 overflow-hidden">
+        <CardHeader className="p-6 sm:p-8 pb-4 border-b border-slate-100">
+          <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider">
             <Layers className="h-4 w-4" />
             <span>3. Taksonomiya va Metama&apos;lumotlar</span>
           </div>
@@ -445,9 +445,9 @@ export function ContributorForm() {
       </Card>
 
       {/* 4. Fayl biriktirish yoki Tashqi havola */}
-      <Card>
-        <CardHeader className="p-6 pb-4 border-b border-border">
-          <div className="flex items-center gap-2 text-primary font-semibold text-xs uppercase tracking-wider">
+      <Card className="rounded-3xl border border-slate-200/90 border-l-[6px] border-l-emerald-600 bg-white shadow-xl shadow-slate-900/5 overflow-hidden">
+        <CardHeader className="p-6 sm:p-8 pb-4 border-b border-slate-100">
+          <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider">
             <Upload className="h-4 w-4" />
             <span>4. Fayl yoki Tashqi Havola (ToR 6.5-band talabi)</span>
           </div>
@@ -506,15 +506,15 @@ export function ContributorForm() {
           </div>
         </CardContent>
 
-        <CardFooter className="p-6 bg-muted/20 border-t border-border flex items-center justify-between">
-          <p className="text-xs text-muted-foreground">
-            Barcha yulduzcha (<span className="text-primary">*</span>) bilan belgilangan maydonlar majburiy.
+        <CardFooter className="p-6 sm:p-8 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-slate-500 text-center sm:text-left">
+            Barcha yulduzcha (<span className="text-emerald-600 font-bold">*</span>) bilan belgilangan maydonlar majburiy.
           </p>
           <Button
             type="submit"
             disabled={status === "submitting"}
             size="lg"
-            className="rounded-xl px-8 font-semibold shadow-sm"
+            className="w-full sm:w-auto rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-8 font-bold shadow-lg shadow-emerald-600/25 cursor-pointer"
           >
             {status === "submitting" ? (
               <>

@@ -17,9 +17,9 @@ export function MaterialsPageClient({
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   return (
-    <div className="space-y-6">
-      {/* Top Search Bar */}
-      <div className="max-w-3xl">
+    <div className="space-y-8">
+      {/* Top Search Bar (Elevated Floating Card) */}
+      <div className="w-full rounded-3xl border border-slate-200/90 bg-white/95 backdrop-blur-md p-5 sm:p-6 shadow-xl shadow-slate-900/5">
         <SearchBar
           defaultValue={activeFilters.q}
           onMobileFilterOpen={() => setMobileFilterOpen(true)}
@@ -29,7 +29,7 @@ export function MaterialsPageClient({
       {/* Main 2-Column Grid */}
       <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] lg:grid-cols-[280px_1fr] gap-8 items-start">
         {/* Desktop Sidebar Filters */}
-        <aside className="hidden md:block sticky top-24 p-5 rounded-2xl border border-border bg-card shadow-xs">
+        <aside className="hidden md:block sticky top-24 p-6 rounded-3xl border border-slate-200/90 bg-white shadow-xl shadow-slate-900/5">
           <FacetFilters activeFilters={activeFilters} />
         </aside>
 

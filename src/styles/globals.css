@@ -358,11 +358,34 @@
   }
 }
 
+/* ── Smooth luxury card hover effect ────────────────────────── */
+.smooth-card-hover {
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease !important;
+  will-change: transform, box-shadow;
+}
+
+.smooth-card-hover:hover {
+  transform: translateY(-8px) !important;
+}
+
+.smooth-card-image {
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.75s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform, box-shadow;
+}
+
+.smooth-card-hover:hover .smooth-card-image {
+  transform: translateY(-4px) !important;
+}
+
 /* Reduced-motion override */
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-left, .reveal-right, .reveal-scale,
   .hero-animate-badge, .hero-animate-headline, .hero-animate-subtitle,
-  .hero-animate-cta, .hero-animate-search, .hero-animate-trust {
+  .hero-animate-cta, .hero-animate-search, .hero-animate-trust,
+  .smooth-card-hover, .smooth-card-image {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
