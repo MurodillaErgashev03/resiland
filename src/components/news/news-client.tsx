@@ -19,7 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { newsArticles, NewsItem } from "@/data/news-data";
 
-import heroNewsBg from "@/assets/img/image.png";
+import heroNewsBg from "@/assets/img/banner2.png";
 
 export function NewsClient() {
   const [searchQuery, setSearchQuery] = useState("");

@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import heroContactBg from "@/assets/img/image.png";
+import heroContactBg from "@/assets/img/banner5.png";
 
 const topicOptions = [
   "Mavzuni tanlang...",

@@ -25,7 +25,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { eventsData, EventItem } from "@/data/events-data";
 
-import heroEventBg from "@/assets/img/image.png";
+import heroEventBg from "@/assets/img/banner4.png";
 
 export function EventsClient() {
   const [searchQuery, setSearchQuery] = useState("");

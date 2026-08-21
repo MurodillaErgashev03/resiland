@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { NewsItem, newsArticles } from "@/data/news-data";
 
-import heroBg from "@/assets/img/image.png";
+import heroBg from "@/assets/img/banner2.png";
 
 interface NewsDetailClientProps {
   article: NewsItem;

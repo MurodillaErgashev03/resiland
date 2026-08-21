@@ -22,7 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { publicationsData, PublicationItem } from "@/data/publications-data";
 
-import heroPubBg from "@/assets/img/image.png";
+import heroPubBg from "@/assets/img/banner3.png";
 
 export function PublicationsClient() {
   const [searchQuery, setSearchQuery] = useState("");

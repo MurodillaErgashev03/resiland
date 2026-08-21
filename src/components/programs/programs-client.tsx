@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import heroMountainBg from "@/assets/img/image.png";
+import heroMountainBg from "@/assets/img/banner1.png";
 import flagKirgz from "@/assets/img/kirgz.png";
 import flagTojik from "@/assets/img/tojik.png";
 import flagUzbek from "@/assets/img/uzbek.png";
