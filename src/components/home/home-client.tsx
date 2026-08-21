@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useEffect, useRef, useCallback } from "react";
 
 interface HomeClientProps {
   stats: StatsData;
@@ -100,24 +101,24 @@ const programs = [
     badge: "Tadqiqot",
     badgeColor: "bg-amber-100 text-amber-700 border-amber-200",
     dot: "bg-amber-500",
-    desc: "Landshaftlarni qayta tiklash imkoniyatlarini xaritalash ishlari olib borilmoqda.",
-    href: "/programs/kyrgyzstan",
+    desc: "Yer degradatsiyasining qaynoq nuqtalarini aniqlash va tiklash ustuvorliklarini belgilash.",
+    href: "/programs/uzbekistan",
   },
 ];
 
 const latestNews = [
   {
-    tag: "Policy & Governance",
-    tagColor: "bg-blue-600",
-    date: "28 Aprel, 2026",
-    title: "KG RESILAND: Qirg'iziston landshaftlarini tiklash bo'yicha mintaqaviy hamkorlikni mustahkamlamoqda",
-    excerpt: "Qirg'iziston Respublikasi delegatsiyasi RESILAND CA+ dasturining mintaqaviy maslahat platformasida ishtirok etdi.",
-    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=360&fit=crop&auto=format",
+    tag: "Landshaft Tiklash",
+    tagColor: "bg-emerald-600",
+    date: "15 May, 2026",
+    title: "RESILAND O'zbekiston: Qoraqum cho'lida saksovul ekilishi natijalarini baholash yakunlandi",
+    excerpt: "Orolbo'yi hududida amalga oshirilgan fitomeliorizatsiya tadbirlarining 3 yillik tahlili va ko'rsatkichlari.",
+    img: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&h=360&fit=crop&auto=format",
     href: "/news",
   },
   {
-    tag: "Knowledge Sharing",
-    tagColor: "bg-emerald-600",
+    tag: "Iqlim & Ekologiya",
+    tagColor: "bg-teal-600",
     date: "28 Aprel, 2026",
     title: "RESILAND Qirg'iziston: Baland tog'li dala ekspeditsiyalarining xavfsizligini ta'minlash",
     excerpt: "Qirg'iziston Barqaror Landshaftlarni Tiklash Loyihasi doirasida xavfsizlik protokollari ishlab chiqildi.",
@@ -176,12 +177,39 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 /* ─── Main component ────────────────────────────────────────────── */
 export function HomeClient({ stats, recent }: HomeClientProps) {
   const { t } = useLanguage();
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const setupObserver = useCallback(() => {
+    if (observerRef.current) observerRef.current.disconnect();
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            // once revealed, stop observing to keep it visible
+            observerRef.current?.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -48px 0px" }
+    );
+
+    document
+      .querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale")
+      .forEach((el) => observerRef.current?.observe(el));
+  }, []);
+
+  useEffect(() => {
+    setupObserver();
+    return () => observerRef.current?.disconnect();
+  }, [setupObserver]);
 
   return (
     <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
 
       {/* ════════════════════════════════════════════════════
-          1. HERO
+          1. HERO — CSS entrance animations on page load
       ════════════════════════════════════════════════════ */}
       <section className="relative text-white h-screen min-h-[640px] max-h-[1080px] -mt-14 pt-14 flex items-center overflow-hidden">
         {/* Background */}
@@ -192,15 +220,14 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
             fill priority quality={100}
             className="object-cover object-[center_35%]"
           />
-          {/* Subtle dark gradient scrim on the text side for perfect legibility */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent w-full lg:w-[65%]" />
           <div className="absolute inset-0 bg-black/15 pointer-events-none" />
         </div>
 
         <div className="container mx-auto px-4 md:px-10 relative z-10 w-full">
           <div className="max-w-xl space-y-5">
-            {/* Badges */}
-            <div className="flex flex-wrap gap-2">
+            {/* Badges — entrance stagger */}
+            <div className="flex flex-wrap gap-2 hero-animate-badge">
               <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-emerald-300 border border-emerald-400/30 shadow-md backdrop-blur-md">
                 <Trees className="h-3.5 w-3.5 text-emerald-400" />
                 RESILAND CA+
@@ -208,24 +235,24 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
               </div>
               <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 border border-white/20 text-white shadow-md backdrop-blur-md">
                 <Landmark className="h-3.5 w-3.5 text-emerald-400" />
-                World Bank & CAREC
+                World Bank &amp; CAREC
               </div>
             </div>
 
             {/* Headline */}
-            <div className="space-y-3">
+            <div className="space-y-3 hero-animate-headline">
               <h1 className="font-heading text-[38px] sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1] drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
                 Markaziy Osiyo<br />
                 <span className="text-emerald-400">Barqaror</span><br />
                 Landshaftlar
               </h1>
-              <p className="text-slate-100 text-sm sm:text-base leading-relaxed max-w-md font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+              <p className="text-slate-100 text-sm sm:text-base leading-relaxed max-w-md font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] hero-animate-subtitle">
                 {t("home.subtitle")}
               </p>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-3 pt-1">
+            <div className="flex flex-wrap gap-3 pt-1 hero-animate-cta">
               <Button asChild className="h-11 px-6 rounded-xl font-bold bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-950/40 gap-2 text-sm transition-all hover:scale-[1.02]">
                 <Link href="/materials">
                   {t("nav.materials")}
@@ -238,16 +265,16 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
             </div>
 
             {/* Search */}
-            <div className="pt-1 max-w-lg">
+            <div className="pt-1 max-w-lg hero-animate-search">
               <HeroSearch />
             </div>
 
             {/* Trust pills */}
-            <div className="pt-3 border-t border-white/20 flex flex-wrap gap-x-5 gap-y-1.5 text-xs font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
-              {["1,240+ Ilmiy resurs", "5 Markaziy Osiyo davlati", "GIS & PDF hujjatlar"].map((t, i) => (
+            <div className="pt-3 border-t border-white/20 flex flex-wrap gap-x-5 gap-y-1.5 text-xs font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] hero-animate-trust">
+              {["1,240+ Ilmiy resurs", "5 Markaziy Osiyo davlati", "GIS & PDF hujjatlar"].map((item, i) => (
                 <div key={i} className="flex items-center gap-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
-                  {t}
+                  {item}
                 </div>
               ))}
             </div>
@@ -256,26 +283,24 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
       </section>
 
       {/* ════════════════════════════════════════════════
-          2. ABOUT — mint-tinted bg + topographic texture
+          2. ABOUT — scroll fade-up
       ════════════════════════════════════════════════ */}
       <section className="relative py-20 overflow-hidden" style={{ background: "linear-gradient(160deg, #f0fdf4 0%, #ecfdf5 40%, #f0f9ff 100%)" }}>
-        {/* Topographic overlay */}
         <div className="absolute inset-0 bg-topo opacity-60 pointer-events-none" />
-        {/* Soft glow orbs */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-200/25 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-teal-200/20 rounded-full blur-3xl pointer-events-none translate-y-1/3 -translate-x-1/4" />
 
         <div className="container mx-auto px-4 md:px-10 relative z-10">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
-            {/* Left */}
-            <div className="space-y-6">
+            {/* Left — slide from left */}
+            <div className="space-y-6 reveal-left">
               <SectionLabel>Dastur haqida</SectionLabel>
               <h2 className="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-slate-950 leading-[1.2]">
                 RESILAND CA+ <span className="gradient-text-emerald">haqida</span>
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  RESILAND CA+ — Jahon bankining Qozog’iston, Qirg’iziston Respublikasi, Tojikiston, Turkmaniston va O’zbekistonga yerlar degradatsiyasiga qarshi kurashish hamda umumiy transchegaraviy landshaftlarda iqlim o’zgarishiga chidamlilikni oshirishda ko’maklashuvchi asosiy mintaqaviy tashabbusidir.
+                  RESILAND CA+ — Jahon bankining Qozog&apos;iston, Qirg&apos;iziston Respublikasi, Tojikiston, Turkmaniston va O&apos;zbekistonga yerlar degradatsiyasiga qarshi kurashish hamda umumiy transchegaraviy landshaftlarda iqlim o&apos;zgarishiga chidamlilikni oshirishda ko&apos;maklashuvchi asosiy mintaqaviy tashabbusidir.
                 </p>
                 <p>
                   Yer degradatsiyasi Markaziy Osiyoga har yili taxminan{" "}
@@ -285,13 +310,13 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
               </div>
               <Button asChild variant="outline" className="rounded-xl font-semibold border-emerald-300 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50 text-emerald-700 bg-emerald-50/50 transition-all gap-1.5 cursor-pointer">
                 <Link href="/about">
-                  Ko’proq ma’lumot
+                  Ko&apos;proq ma&apos;lumot
                   <ChevronRight className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
 
-            {/* Right — stat grid with card accents */}
+            {/* Right — stat grid, each card staggered */}
             <div className="grid grid-cols-2 gap-4">
               {aboutStats.map((s, i) => {
                 const Icon = s.icon;
@@ -303,10 +328,11 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
                   "bg-amber-100 border-amber-200 text-amber-700",
                 ];
                 const valueColors = ["gradient-text-emerald", "gradient-text-teal", "gradient-text-teal", "text-amber-600 font-extrabold"];
+                const delays = ["", "reveal-delay-150", "reveal-delay-300", "reveal-delay-400"];
                 return (
                   <div
                     key={i}
-                    className={`group relative p-6 rounded-2xl border border-white/80 bg-white/70 backdrop-blur-sm hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 space-y-3 overflow-hidden stat-glow-emerald ${accents[i]}`}
+                    className={`group relative p-6 rounded-2xl border border-white/80 bg-white/70 backdrop-blur-sm hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 space-y-3 overflow-hidden stat-glow-emerald ${accents[i]} reveal ${delays[i]}`}
                   >
                     <div className="absolute -right-5 -top-5 h-20 w-20 rounded-full bg-emerald-100/50 blur-xl pointer-events-none" />
                     <div className={`inline-flex items-center justify-center h-10 w-10 rounded-xl border ${iconBgs[i]}`}>
@@ -325,7 +351,7 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
       </section>
 
       {/* ════════════════════════════════════════════════
-          3. STATS PANEL — teal-to-emerald gradient band
+          3. STATS PANEL — fade up
       ════════════════════════════════════════════════ */}
       <section className="relative py-14 overflow-hidden" style={{ background: "linear-gradient(135deg, #ecfdf5 0%, #ccfbf1 40%, #cffafe 70%, #e0f2fe 100%)" }}>
         <div className="absolute inset-0 bg-grid-pattern pointer-events-none" />
@@ -333,11 +359,11 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
         <div className="absolute right-1/4 bottom-0 h-48 w-48 bg-teal-200/30 rounded-full blur-3xl pointer-events-none translate-y-1/2" />
 
         <div className="container mx-auto px-4 md:px-10 space-y-8 relative z-10">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-[11px] font-bold text-teal-700 uppercase tracking-widest bg-teal-50 border border-teal-200 px-3.5 py-1 rounded-full">
                 <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
-                Ma’lumotlar bazasi
+                Ma&apos;lumotlar bazasi
               </div>
               <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
                 {t("home.statsTitle") || "Jonli Statistika"}
@@ -350,19 +376,21 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
               Jonli yangilanish · 60s ISR
             </div>
           </div>
-          <StatsPanel data={stats} />
+          <div className="reveal reveal-delay-200">
+            <StatsPanel data={stats} />
+          </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════
-          4. PROGRAMS — sky-tinted with colored card tops
+          4. PROGRAMS — staggered cards
       ════════════════════════════════════════════════════ */}
       <section className="relative py-20 overflow-hidden" style={{ background: "linear-gradient(160deg, #f0fdf4 0%, #ecfeff 50%, #eff6ff 100%)" }}>
         <div className="absolute inset-0 bg-topo opacity-40 pointer-events-none" />
         <div className="absolute top-10 right-10 h-72 w-72 bg-sky-200/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 md:px-10 space-y-12 relative z-10">
-          <div className="text-center space-y-4 max-w-2xl mx-auto">
+          <div className="text-center space-y-4 max-w-2xl mx-auto reveal">
             <div className="inline-flex items-center gap-2 text-[11px] font-bold text-sky-700 uppercase tracking-widest bg-sky-50 border border-sky-200 px-3.5 py-1 rounded-full">
               <span className="h-1.5 w-1.5 rounded-full bg-sky-500" />
               Dastur komponentlari
@@ -377,11 +405,12 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {programs.map((p, i) => {
+              const delays = ["", "reveal-delay-100", "reveal-delay-200", "reveal-delay-300", "reveal-delay-400"];
               return (
                 <Link
                   key={i}
                   href={p.href}
-                  className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300"
+                  className={`group flex flex-col rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300 reveal ${delays[i]}`}
                 >
                   <div className="relative aspect-[3/2] w-full bg-slate-50 overflow-hidden">
                     <Image
@@ -418,14 +447,14 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
       </section>
 
       {/* ════════════════════════════════════════════════════
-          5. MAP — organic teal-sky gradient
+          5. MAP — fade up
       ════════════════════════════════════════════════════ */}
       <section className="relative py-14 overflow-hidden" style={{ background: "linear-gradient(150deg, #ccfbf1 0%, #cffafe 50%, #dbeafe 100%)" }}>
         <div className="absolute inset-0 bg-grid-pattern pointer-events-none" />
         <div className="absolute right-0 top-1/2 h-80 w-80 bg-sky-200/30 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3" />
 
         <div className="container mx-auto px-4 md:px-10 space-y-8 relative z-10">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-[11px] font-bold text-teal-700 uppercase tracking-widest bg-teal-50 border border-teal-200 px-3.5 py-1 rounded-full">
                 <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
@@ -441,16 +470,18 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
               CAREC &amp; World Bank Ma&apos;lumotlari
             </div>
           </div>
-          <InteractiveRegionMap />
+          <div className="reveal reveal-delay-200">
+            <InteractiveRegionMap />
+          </div>
         </div>
       </section>
 
 
       {/* ════════════════════════════════════════════════════
-          6. LATEST NEWS — vivid cards
+          6. LATEST NEWS — staggered cards
       ════════════════════════════════════════════════════ */}
       <section className="py-20 container mx-auto px-4 md:px-10 space-y-12">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
           <div className="space-y-2">
             <SectionLabel>Yangiliklar</SectionLabel>
             <h2 className="font-heading text-3xl sm:text-[40px] font-bold tracking-tight text-slate-950">
@@ -465,53 +496,56 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
         </div>
 
         <div className="grid sm:grid-cols-3 gap-6">
-          {latestNews.map((news, i) => (
-            <Link
-              key={i}
-              href={news.href}
-              className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-xs hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300 transition-all duration-300"
-            >
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={news.img}
-                  alt={news.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                <span className={`absolute top-3 left-3 text-[10px] font-bold text-white px-2.5 py-1 rounded-full ${news.tagColor}`}>
-                  {news.tag}
-                </span>
-              </div>
-
-              {/* Body */}
-              <div className="p-5 space-y-3 flex-1 flex flex-col">
-                <p className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
-                  <Calendar className="h-3 w-3" />
-                  {news.date}
-                </p>
-                <h3 className="font-heading text-sm font-bold text-slate-950 leading-snug line-clamp-3 flex-1">
-                  {news.title}
-                </h3>
-                <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{news.excerpt}</p>
-                <div className="flex items-center gap-1 text-xs font-bold text-emerald-700 group-hover:gap-2 transition-all pt-1">
-                  O&apos;qish <ArrowRight className="h-3 w-3" />
+          {latestNews.map((news, i) => {
+            const delays = ["", "reveal-delay-200", "reveal-delay-400"];
+            return (
+              <Link
+                key={i}
+                href={news.href}
+                className={`group flex flex-col rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-xs hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300 transition-all duration-300 reveal ${delays[i]}`}
+              >
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={news.img}
+                    alt={news.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  <span className={`absolute top-3 left-3 text-[10px] font-bold text-white px-2.5 py-1 rounded-full ${news.tagColor}`}>
+                    {news.tag}
+                  </span>
                 </div>
-              </div>
-            </Link>
-          ))}
+
+                {/* Body */}
+                <div className="p-5 space-y-3 flex-1 flex flex-col">
+                  <p className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
+                    <Calendar className="h-3 w-3" />
+                    {news.date}
+                  </p>
+                  <h3 className="font-heading text-sm font-bold text-slate-950 leading-snug line-clamp-3 flex-1">
+                    {news.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">{news.excerpt}</p>
+                  <div className="flex items-center gap-1 text-xs font-bold text-emerald-700 group-hover:gap-2 transition-all pt-1">
+                    O&apos;qish <ArrowRight className="h-3 w-3" />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════
-          7. RECENT MATERIALS — soft mint
+          7. RECENT MATERIALS — fade up
       ════════════════════════════════════════════════════ */}
       <section className="relative py-14 overflow-hidden" style={{ background: "linear-gradient(160deg, #ecfdf5 0%, #f0fdf9 40%, #f0f9ff 100%)" }}>
         <div className="absolute inset-0 bg-topo opacity-50 pointer-events-none" />
         <div className="absolute left-0 bottom-0 h-64 w-64 bg-emerald-200/20 rounded-full blur-3xl pointer-events-none" />
         <div className="container mx-auto px-4 md:px-10 space-y-8 relative z-10">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
             <div className="space-y-2">
               <SectionLabel>Resurslar bazasi</SectionLabel>
               <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
@@ -525,18 +559,20 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
               </Link>
             </Button>
           </div>
-          <RecentMaterials items={recent} />
+          <div className="reveal reveal-delay-200">
+            <RecentMaterials items={recent} />
+          </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════
-          8. PUBLICATIONS — primary emerald / teal palette
+          8. PUBLICATIONS — staggered cards
       ════════════════════════════════════════════════════ */}
       <section className="relative py-20 overflow-hidden" style={{ background: "linear-gradient(160deg, #f0fdf4 0%, #ecfdf5 45%, #f8fafc 100%)" }}>
         <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60" />
         <div className="absolute right-0 top-0 h-72 w-72 bg-emerald-200/25 rounded-full blur-3xl pointer-events-none -translate-y-1/3 translate-x-1/3" />
         <div className="container mx-auto px-4 md:px-10 space-y-12 relative z-10">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 reveal">
             <div className="space-y-2">
               <SectionLabel>Nashrlar</SectionLabel>
               <h2 className="font-heading text-3xl sm:text-[40px] font-bold tracking-tight text-slate-950">
@@ -556,10 +592,11 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
                 "bg-teal-50 border-teal-100 text-teal-600",
                 "bg-emerald-50 border-emerald-100 text-emerald-600",
               ];
+              const delays = ["reveal", "reveal reveal-delay-200", "reveal reveal-delay-400"];
               return (
                 <div
                   key={i}
-                  className="group flex flex-col p-6 rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm shadow-xs hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300 transition-all duration-300 space-y-4"
+                  className={`group flex flex-col p-6 rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm shadow-xs hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300 transition-all duration-300 space-y-4 ${delays[i]}`}
                 >
                   <div className="flex items-center justify-between">
                     <div className={`h-11 w-11 rounded-xl border flex items-center justify-center ${iconStyles[i]}`}>
@@ -586,12 +623,12 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
       </section>
 
       {/* ════════════════════════════════════════════════════
-          9. PARTNERS — frosted teal
+          9. PARTNERS — scale-in
       ════════════════════════════════════════════════════ */}
       <section className="relative py-16 overflow-hidden" style={{ background: "linear-gradient(160deg, #ccfbf1 0%, #cffafe 60%, #dbeafe 100%)" }}>
         <div className="absolute inset-0 bg-topo opacity-50 pointer-events-none" />
         <div className="container mx-auto px-4 md:px-10 space-y-10 relative z-10">
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-3 reveal">
             <div className="inline-flex items-center gap-2 text-[11px] font-bold text-teal-700 uppercase tracking-widest bg-teal-50 border border-teal-200 px-3.5 py-1 rounded-full">
               <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
               Hamkorlar
@@ -602,25 +639,28 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
             <p className="text-sm text-slate-600 max-w-md mx-auto">Dasturni amalga oshirishda ishtirok etayotgan xalqaro tashkilotlar</p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-12">
-            {partners.map((p, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-center p-4 rounded-2xl bg-white/70 border border-white/80 shadow-sm backdrop-blur-sm opacity-70 hover:opacity-100 hover:shadow-md hover:bg-white transition-all duration-300 cursor-pointer"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.logo} alt={p.name} className="h-9 sm:h-11 object-contain max-w-[130px]" />
-              </div>
-            ))}
+            {partners.map((p, i) => {
+              const delays = ["", "reveal-delay-150", "reveal-delay-300", "reveal-delay-500"];
+              return (
+                <div
+                  key={i}
+                  className={`flex items-center justify-center p-4 rounded-2xl bg-white/70 border border-white/80 shadow-sm backdrop-blur-sm opacity-70 hover:opacity-100 hover:shadow-md hover:bg-white transition-all duration-300 cursor-pointer reveal-scale ${delays[i]}`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.logo} alt={p.name} className="h-9 sm:h-11 object-contain max-w-[130px]" />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════
-          10. CONTACT CTA — bold emerald-to-teal gradient
+          10. CONTACT CTA — slide up
       ════════════════════════════════════════════════════ */}
       <section className="py-20 container mx-auto px-4 md:px-10">
         <div
-          className="relative rounded-3xl overflow-hidden p-10 md:p-16 shadow-2xl shadow-emerald-900/15"
+          className="relative rounded-3xl overflow-hidden p-10 md:p-16 shadow-2xl shadow-emerald-900/15 reveal"
           style={{ background: "linear-gradient(135deg, #064e3b 0%, #065f46 30%, #0d9488 70%, #0891b2 100%)" }}
         >
           <div
@@ -635,7 +675,7 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
           <div className="absolute bottom-0 left-0 -ml-16 -mb-16 h-64 w-64 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
-            <div className="space-y-4 max-w-xl text-center md:text-left">
+            <div className="space-y-4 max-w-xl text-center md:text-left reveal-left">
               <div className="inline-flex items-center gap-2 text-[11px] font-bold text-emerald-200 uppercase tracking-widest bg-white/10 border border-white/20 px-3.5 py-1 rounded-full">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" />
                 Hamkorlik
@@ -647,7 +687,7 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
                 Faoliyatimiz va qanday qilib birgalikda ishlashimiz mumkinligi haqida ko&apos;proq ma&apos;lumot olish uchun RESILAND jamoasi bilan bog&apos;laning.
               </p>
             </div>
-            <div className="shrink-0 flex flex-col items-center gap-3">
+            <div className="shrink-0 flex flex-col items-center gap-3 reveal-right reveal-delay-200">
               <Button asChild size="lg" className="h-12 px-8 rounded-xl font-bold bg-white hover:bg-emerald-50 text-emerald-800 shadow-xl gap-2.5 text-sm cursor-pointer transition-all hover:scale-[1.03]">
                 <Link href="/contact">
                   <Mail className="h-4.5 w-4.5" />
