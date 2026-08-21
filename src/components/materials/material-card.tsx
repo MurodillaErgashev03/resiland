@@ -37,7 +37,7 @@ export function MaterialCard({ material }: MaterialCardProps) {
   const Icon = config.icon;
 
   return (
-    <Card className="flex flex-col justify-between rounded-2xl border-slate-200 bg-white hover:border-slate-300 hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-1.5 shadow-xs transition-all duration-300 group overflow-hidden">
+    <Card className="flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white hover:border-slate-300 shadow-xs hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1.5 transition-all duration-300 group overflow-hidden">
       <CardHeader className="p-5 pb-3 space-y-3">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">

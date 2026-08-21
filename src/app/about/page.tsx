@@ -21,7 +21,7 @@ export default function AboutPage() {
       <Header />
 
       {/* ─── Hero Section with Mountain Landscape (100vh) ─── */}
-      <section className="relative overflow-hidden min-h-[calc(100vh-3.5rem)] flex items-center border-b border-slate-200">
+      <section className="relative text-white min-h-screen -mt-14 pt-14 flex items-center overflow-hidden border-b border-slate-200">
         <div className="absolute inset-0 z-0">
           <Image
             src={heroMountainBg}
@@ -31,30 +31,36 @@ export default function AboutPage() {
             quality={100}
             className="object-cover object-[center_35%]"
           />
-          {/* Crisp left-side gradient for sharp readability while keeping natural mountain landscape vivid */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent w-full md:w-[75%]" />
+          {/* Dark gradient for perfect readability and seamless transparent header integration */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-transparent w-full md:w-[75%]" />
+          <div className="absolute inset-0 bg-black/15 pointer-events-none" />
         </div>
 
         <div className="container mx-auto px-4 md:px-12 py-16 sm:py-24 relative z-10">
           <div className="max-w-3xl space-y-6">
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-950 leading-[1.1]">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-black/40 text-emerald-300 border border-emerald-500/30 shadow-md backdrop-blur-md">
+              <Trees className="h-3.5 w-3.5 text-emerald-400" />
+              RESILAND CA+
+            </div>
+
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.1] drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
               RESILAND CA+ haqida
             </h1>
 
             {/* Accent Green Line */}
-            <div className="w-20 h-1.5 bg-emerald-600 rounded-full" />
+            <div className="w-20 h-1.5 bg-emerald-500 rounded-full shadow-sm shadow-emerald-500/50" />
 
-            <p className="text-slate-800 text-base sm:text-lg md:text-xl leading-relaxed font-medium max-w-2xl pt-1">
+            <p className="text-slate-100 text-base sm:text-lg md:text-xl leading-relaxed font-medium max-w-2xl pt-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               Markaziy Osiyoda barqaror landshaftlar dasturi — bu mintaqaviy hamkorlik orqali Markaziy Osiyoning beshta mamlakatida degradatsiyaga uchragan landshaftlarni qayta tiklash, iqlimga chidamlilikni oshirish va jamoalarning yashash sharoitlarini yaxshilashga qaratilgan, CAREC tomonidan muvofiqlashtiriladigan Jahon bankining flagman tashabbusidir.
             </p>
           </div>
         </div>
 
         {/* Subtle scroll indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-600 z-10 pointer-events-none">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-slate-500">Pastga siljiting</span>
-          <div className="w-5 h-8 rounded-full border-2 border-slate-400/80 flex items-start justify-center p-1">
-            <div className="w-1 h-2 rounded-full bg-emerald-600 animate-bounce" />
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/80 z-10 pointer-events-none">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-white/70">Pastga siljiting</span>
+          <div className="w-5 h-8 rounded-full border-2 border-white/40 flex items-start justify-center p-1">
+            <div className="w-1 h-2 rounded-full bg-emerald-400 animate-bounce" />
           </div>
         </div>
       </section>
@@ -124,53 +130,61 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
               {/* Card 1: Landshaftlarni qayta tiklash */}
-              <div className="p-7 rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-all space-y-3">
+              <div className="p-7 rounded-2xl border border-slate-200 border-l-4 border-l-emerald-500 bg-white shadow-xs hover:border-slate-300 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1 transition-all space-y-3">
                 <div className="flex items-center gap-3">
-                  <Trees className="h-7 w-7 text-emerald-600 shrink-0" />
+                  <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
+                    <Trees className="h-5 w-5" />
+                  </div>
                   <h3 className="font-heading text-base font-bold text-slate-950">
                     Landshaftlarni qayta tiklash
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-10">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-13">
                   Qurg&apos;oqchilikka chidamli turlarni ekish, degradatsiyaga uchragan o&apos;rmon va yaylovlarni reabilitatsiya qilish hamda jamoaga yo&apos;naltirilgan qayta tiklash modellarini joriy etish.
                 </p>
               </div>
 
               {/* Card 2: Iqlimga chidamlilik */}
-              <div className="p-7 rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-all space-y-3">
+              <div className="p-7 rounded-2xl border border-slate-200 border-l-4 border-l-sky-500 bg-white shadow-xs hover:border-slate-300 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1 transition-all space-y-3">
                 <div className="flex items-center gap-3">
-                  <Shield className="h-7 w-7 text-sky-600 fill-sky-100 shrink-0" />
+                  <div className="h-10 w-10 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 shrink-0">
+                    <Shield className="h-5 w-5" />
+                  </div>
                   <h3 className="font-heading text-base font-bold text-slate-950">
                     Iqlimga chidamlilik
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-10">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-13">
                   Iqlim bilan bog&apos;liq xavf-xatarlarni monitoring qilish hamda sel, suv toshqinlari va chang bo&apos;ronlari oqibatlarini yumshatish uchun tabiatga asoslangan va yashil-kulrang yechimlarga investitsiya kiritish.
                 </p>
               </div>
 
               {/* Card 3: Jamoalarning yashash sharoitlari */}
-              <div className="p-7 rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-all space-y-3">
+              <div className="p-7 rounded-2xl border border-slate-200 border-l-4 border-l-amber-500 bg-white shadow-xs hover:border-slate-300 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1 transition-all space-y-3">
                 <div className="flex items-center gap-3">
-                  <Home className="h-7 w-7 text-amber-700 fill-amber-100 shrink-0" />
+                  <div className="h-10 w-10 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 shrink-0">
+                    <Home className="h-5 w-5" />
+                  </div>
                   <h3 className="font-heading text-base font-bold text-slate-950">
                     Jamoalarning yashash sharoitlari
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-10">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-13">
                   Tabiiy resurslarga bosimni kamaytirish uchun jamoalarni iqtisodiy faoliyatni diversifikatsiya qilishda (ekoturizm, agromelioratsiya, ko&apos;nikmalarni rivojlantirish) qo&apos;llab-quvvatlash.
                 </p>
               </div>
 
               {/* Card 4: Mintaqaviy hamkorlik */}
-              <div className="p-7 rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-all space-y-3">
+              <div className="p-7 rounded-2xl border border-slate-200 border-l-4 border-l-teal-500 bg-white shadow-xs hover:border-slate-300 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1 transition-all space-y-3">
                 <div className="flex items-center gap-3">
-                  <Handshake className="h-7 w-7 text-amber-500 shrink-0" />
+                  <div className="h-10 w-10 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 shrink-0">
+                    <Handshake className="h-5 w-5" />
+                  </div>
                   <h3 className="font-heading text-base font-bold text-slate-950">
                     Mintaqaviy hamkorlik
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-10">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-13">
                   Birgalikda boshqariladigan transchegaraviy muhofaza etiladigan hududlarni tashkil etish, siyosiy muloqotni va landshaft boshqaruviga uyg&apos;unlashgan yondashuvlarni rag&apos;batlantirish.
                 </p>
               </div>
@@ -408,7 +422,7 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
               {/* Card 1: Armenia */}
-              <div className="p-7 rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-all space-y-3 flex flex-col justify-between">
+              <div className="p-7 rounded-2xl border border-slate-200 border-l-4 border-l-emerald-500 bg-white shadow-xs hover:border-slate-300 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1 transition-all space-y-3 flex flex-col justify-between">
                 <div className="space-y-3">
                   <span className="inline-block text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full w-fit">
                     May 2024
@@ -423,7 +437,7 @@ export default function AboutPage() {
               </div>
 
               {/* Card 2: Sahel / Africa */}
-              <div className="p-7 rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-all space-y-3 flex flex-col justify-between">
+              <div className="p-7 rounded-2xl border border-slate-200 border-l-4 border-l-sky-500 bg-white shadow-xs hover:border-slate-300 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-1 transition-all space-y-3 flex flex-col justify-between">
                 <div className="space-y-3">
                   <span className="inline-block text-xs font-bold text-sky-800 bg-sky-50 border border-sky-200 px-3 py-1 rounded-full w-fit">
                     Texnik ko‘mak

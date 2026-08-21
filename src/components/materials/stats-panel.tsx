@@ -40,7 +40,7 @@ export function StatsPanel({ data }: StatsPanelProps) {
       {/* Top 3 Authoritative Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Total Materials Card */}
-        <div className="group relative rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white p-4.5 sm:p-5 shadow-2xs hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300 cursor-default">
+        <div className="group relative rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white p-4.5 sm:p-5 shadow-xs hover:border-slate-300 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-1 transition-all duration-300 cursor-default">
           <div className="flex items-center gap-3.5">
             <div className="h-11 w-11 rounded-xl bg-white text-emerald-600 border border-emerald-200/90 flex items-center justify-center shrink-0 shadow-2xs">
               <FileStack className="h-5.5 w-5.5" aria-hidden="true" />
@@ -63,7 +63,7 @@ export function StatsPanel({ data }: StatsPanelProps) {
         </div>
 
         {/* Countries Covered Card */}
-        <div className="group relative rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white p-4.5 sm:p-5 shadow-2xs hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300 cursor-default">
+        <div className="group relative rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white p-4.5 sm:p-5 shadow-xs hover:border-slate-300 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-1 transition-all duration-300 cursor-default">
           <div className="flex items-center gap-3.5">
             <div className="h-11 w-11 rounded-xl bg-white text-emerald-600 border border-emerald-200/90 flex items-center justify-center shrink-0 shadow-2xs">
               <Globe2 className="h-5.5 w-5.5" aria-hidden="true" />
@@ -86,7 +86,7 @@ export function StatsPanel({ data }: StatsPanelProps) {
         </div>
 
         {/* Last Updated Card */}
-        <div className="group relative rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white p-4.5 sm:p-5 shadow-2xs hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300 cursor-default sm:col-span-2 lg:col-span-1">
+        <div className="group relative rounded-2xl border border-slate-200/80 bg-slate-50/60 hover:bg-white p-4.5 sm:p-5 shadow-xs hover:border-slate-300 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-1 transition-all duration-300 cursor-default sm:col-span-2 lg:col-span-1">
           <div className="flex items-center gap-3.5">
             <div className="h-11 w-11 rounded-xl bg-white text-emerald-600 border border-emerald-200/90 flex items-center justify-center shrink-0 shadow-2xs">
               <Clock className="h-5.5 w-5.5" aria-hidden="true" />

@@ -201,12 +201,12 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
           <div className="max-w-xl space-y-5">
             {/* Badges */}
             <div className="flex flex-wrap gap-2">
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-black/40 text-emerald-300 border border-emerald-500/30 shadow-md backdrop-blur-md">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-emerald-300 border border-emerald-400/30 shadow-md backdrop-blur-md">
                 <Trees className="h-3.5 w-3.5 text-emerald-400" />
                 RESILAND CA+
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-black/40 border border-white/20 text-white shadow-md backdrop-blur-md">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 border border-white/20 text-white shadow-md backdrop-blur-md">
                 <Landmark className="h-3.5 w-3.5 text-emerald-400" />
                 World Bank & CAREC
               </div>
@@ -232,7 +232,7 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="h-11 px-5 rounded-xl font-semibold bg-black/30 border-white/30 hover:bg-white hover:text-slate-950 text-white shadow-md backdrop-blur-md text-sm transition-all cursor-pointer">
+              <Button asChild variant="outline" className="h-11 px-5 rounded-xl font-semibold bg-white/10 border-white/20 hover:bg-white/20 text-white shadow-md backdrop-blur-md text-sm transition-all cursor-pointer">
                 <Link href="/about">RESILAND haqida</Link>
               </Button>
             </div>
@@ -377,12 +377,11 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {programs.map((p, i) => {
-              const cardAccents = ["card-accent-violet", "card-accent-emerald", "card-accent-teal", "card-accent-sky", "card-accent-amber"];
               return (
                 <Link
                   key={i}
                   href={p.href}
-                  className={`group flex flex-col rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-100 ${cardAccents[i]}`}
+                  className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300"
                 >
                   <div className="relative aspect-[3/2] w-full bg-slate-50 overflow-hidden">
                     <Image
@@ -470,7 +469,7 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
             <Link
               key={i}
               href={news.href}
-              className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white overflow-hidden hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-100 transition-all duration-300 card-accent-emerald"
+              className="group flex flex-col rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-xs hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300 transition-all duration-300"
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
@@ -552,7 +551,6 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
           </div>
           <div className="grid sm:grid-cols-3 gap-5">
             {latestPublications.map((pub, i) => {
-              const pubAccents = ["card-accent-emerald", "card-accent-teal", "card-accent-emerald"];
               const iconStyles = [
                 "bg-emerald-50 border-emerald-100 text-emerald-600",
                 "bg-teal-50 border-teal-100 text-teal-600",
@@ -561,7 +559,7 @@ export function HomeClient({ stats, recent }: HomeClientProps) {
               return (
                 <div
                   key={i}
-                  className={`group flex flex-col p-6 rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm hover:-translate-y-1.5 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-300 space-y-4 ${pubAccents[i]}`}
+                  className="group flex flex-col p-6 rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm shadow-xs hover:-translate-y-1.5 hover:shadow-xl hover:shadow-black/10 hover:border-slate-300 transition-all duration-300 space-y-4"
                 >
                   <div className="flex items-center justify-between">
                     <div className={`h-11 w-11 rounded-xl border flex items-center justify-center ${iconStyles[i]}`}>

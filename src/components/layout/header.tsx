@@ -21,6 +21,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const programsDropdown = [
+  { href: "/programs", label: "Barcha komponentlar", flag: "🌐" },
   { href: "/programs/kyrgyzstan", label: "Qirg'iziston Respublikasi", flag: "🇰🇬" },
   { href: "/programs/tajikistan", label: "Tojikiston", flag: "🇹🇯" },
   { href: "/programs/uzbekistan", label: "O'zbekiston", flag: "🇺🇿" },
@@ -56,6 +57,7 @@ export function Header() {
 
   const mobileNavLinks = [
     { href: "/about", label: "RESILAND haqida" },
+    { href: "/programs", label: "Dastur Komponentlari" },
     { href: "/programs/kyrgyzstan", label: "Qirg'iziston Respublikasi", indent: true },
     { href: "/programs/tajikistan", label: "Tojikiston", indent: true },
     { href: "/programs/uzbekistan", label: "O'zbekiston", indent: true },
@@ -67,23 +69,23 @@ export function Header() {
     { href: "/submit", label: t("nav.submit"), icon: PlusCircle },
   ];
 
-  const isProgramsActive = programsDropdown.some((p) => pathname.startsWith(p.href));
+  const isProgramsActive = pathname.startsWith("/programs");
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/15 bg-black/40 backdrop-blur-xl text-white transition-all shadow-md">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/20 backdrop-blur-xl text-white transition-all">
       <div className="container mx-auto px-4 md:px-6 h-14 flex items-center justify-between gap-3">
 
         {/* Brand Logo */}
         <div className="flex items-center gap-4 shrink-0">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="h-8 w-8 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center text-emerald-400 backdrop-blur-md group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-xs">
+            <div className="h-8 w-8 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-emerald-400 backdrop-blur-md group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-xs group-hover:shadow-md group-hover:shadow-black/40">
               <Layers className="h-4 w-4" />
             </div>
             <span className="font-black text-sm tracking-tight text-white drop-shadow-sm">RESILAND CA+</span>
           </Link>
 
-          {/* Desktop Nav — frosted dark pill container with animated emerald droplet */}
-          <nav className="hidden lg:flex items-center gap-0.5 p-1 rounded-full bg-black/30 backdrop-blur-md border border-white/20 shadow-xs">
+          {/* Desktop Nav — frosted glass pill container with animated emerald droplet */}
+          <nav className="hidden lg:flex items-center gap-0.5 p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 shadow-xs shadow-black/20">
             {/* RESILAND haqida */}
             {navLinks.slice(0, 1).map((link) => {
               const isActive = pathname === link.href;
@@ -92,14 +94,14 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative h-8 inline-flex items-center px-3.5 rounded-full text-xs font-semibold transition-colors duration-300 select-none",
+                    "relative h-8 inline-flex items-center px-3.5 rounded-full text-xs font-semibold transition-all duration-300 select-none hover:shadow-md hover:shadow-black/40",
                     isActive ? "text-white" : "text-white/80 hover:text-white"
                   )}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeNavDroplet"
-                      className="absolute inset-0 bg-emerald-600 rounded-full shadow-md shadow-emerald-700/30"
+                      className="absolute inset-0 bg-emerald-600 rounded-full shadow-md shadow-black/30"
                       transition={{ type: "spring", stiffness: 350, damping: 26, mass: 0.7 }}
                     />
                   )}
@@ -108,34 +110,47 @@ export function Header() {
               );
             })}
 
-            {/* Dastur Komponentlari dropdown */}
-            <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => setProgramsOpen(!programsOpen)}
-                className={cn(
-                  "relative h-8 flex items-center gap-1 px-3.5 rounded-full text-xs font-semibold transition-colors duration-300 select-none",
-                  isProgramsActive ? "text-white" : "text-white/80 hover:text-white"
-                )}
+            {/* Dastur Komponentlari dropdown & link */}
+            <div
+              className={cn(
+                "relative h-8 flex items-center rounded-full transition-all duration-300 select-none hover:shadow-md hover:shadow-black/40",
+                isProgramsActive ? "text-white" : "text-white/80 hover:text-white"
+              )}
+              ref={dropdownRef}
+              onMouseEnter={() => setProgramsOpen(true)}
+              onMouseLeave={() => setProgramsOpen(false)}
+            >
+              {isProgramsActive && (
+                <motion.div
+                  layoutId="activeNavDroplet"
+                  className="absolute inset-0 bg-emerald-600 rounded-full shadow-md shadow-black/30 pointer-events-none"
+                  transition={{ type: "spring", stiffness: 350, damping: 26, mass: 0.7 }}
+                />
+              )}
+              <Link
+                href="/programs"
+                onClick={() => setProgramsOpen(false)}
+                className="relative z-10 h-full flex items-center pl-3.5 pr-1 text-xs font-semibold cursor-pointer"
               >
-                {isProgramsActive && (
-                  <motion.div
-                    layoutId="activeNavDroplet"
-                    className="absolute inset-0 bg-emerald-600 rounded-full shadow-md shadow-emerald-700/30"
-                    transition={{ type: "spring", stiffness: 350, damping: 26, mass: 0.7 }}
-                  />
-                )}
-                <span className="relative z-10">Dastur Komponentlari</span>
-                <ChevronDown className={cn("relative z-10 h-3.5 w-3.5 transition-transform duration-200", programsOpen && "rotate-180")} />
+                <span>Dastur Komponentlari</span>
+              </Link>
+              <button
+                type="button"
+                onClick={() => setProgramsOpen(!programsOpen)}
+                className="relative z-10 h-full pr-3 pl-1 flex items-center cursor-pointer text-white/80 hover:text-white transition-colors"
+                aria-label="Dastur komponentlari menyusi"
+              >
+                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform duration-200", programsOpen && "rotate-180")} />
               </button>
 
               <AnimatePresence>
                 {programsOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -8, scale: 0.97 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute left-0 top-full mt-2 w-56 bg-slate-900/95 border border-white/20 rounded-2xl shadow-xl shadow-black/40 overflow-hidden z-50 backdrop-blur-xl"
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute left-0 top-full mt-2 w-64 p-1.5 space-y-1 bg-slate-950/90 border border-white/15 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] z-50 backdrop-blur-2xl ring-1 ring-black/30"
                   >
                     {programsDropdown.map((item) => (
                       <Link
@@ -143,14 +158,14 @@ export function Header() {
                         href={item.href}
                         onClick={() => setProgramsOpen(false)}
                         className={cn(
-                          "flex items-center gap-2.5 px-4 py-3 text-sm font-medium transition-colors",
-                          pathname.startsWith(item.href)
-                            ? "text-emerald-400 bg-white/10 font-bold"
-                            : "text-slate-200 hover:text-white hover:bg-white/10"
+                          "flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all border",
+                          pathname === item.href || (item.href !== "/programs" && pathname.startsWith(item.href))
+                            ? "bg-gradient-to-r from-emerald-600/35 to-emerald-500/20 border-emerald-500/40 text-emerald-300 shadow-md shadow-black/40"
+                            : "border-transparent text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/10 hover:shadow-md hover:shadow-black/40"
                         )}
                       >
                         <span className="text-base">{item.flag}</span>
-                        {item.label}
+                        <span>{item.label}</span>
                       </Link>
                     ))}
                   </motion.div>
@@ -166,14 +181,14 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "relative h-8 inline-flex items-center px-3.5 rounded-full text-xs font-semibold transition-colors duration-300 select-none",
+                    "relative h-8 inline-flex items-center px-3.5 rounded-full text-xs font-semibold transition-all duration-300 select-none hover:shadow-md hover:shadow-black/40",
                     isActive ? "text-white" : "text-white/80 hover:text-white"
                   )}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeNavDroplet"
-                      className="absolute inset-0 bg-emerald-600 rounded-full shadow-md shadow-emerald-700/30"
+                      className="absolute inset-0 bg-emerald-600 rounded-full shadow-md shadow-black/30"
                       transition={{ type: "spring", stiffness: 350, damping: 26, mass: 0.7 }}
                     />
                   )}
@@ -185,7 +200,7 @@ export function Header() {
         </div>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 relative z-50">
           <LocaleSwitcher />
           <UserMenu />
 
@@ -194,7 +209,7 @@ export function Header() {
             <Button
               asChild
               size="sm"
-              className="hidden sm:inline-flex h-8 px-3.5 rounded-full font-semibold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-700/20 text-xs gap-1.5 transition-all hover:scale-[1.02] cursor-pointer"
+              className="hidden sm:inline-flex h-8 px-3.5 rounded-full font-semibold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-black/30 hover:shadow-lg hover:shadow-black/50 text-xs gap-1.5 transition-all hover:scale-[1.02] cursor-pointer"
             >
               <Link href="/submit">
                 <PlusCircle className="h-3.5 w-3.5" />
